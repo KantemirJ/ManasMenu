@@ -48,7 +48,7 @@ namespace ManasMenuTest.Controllers
             {
                 return NotFound();
             }
-            return await _context.Menu.Where(x => x.Type == "WITHMEAT").ToListAsync();
+            return await _context.Menu.Where(x => x.Type == "WITH MEAT").ToListAsync();
         }
         [HttpGet("GetWithoutMeat")]
         public async Task<ActionResult<IEnumerable<Menu>>> GetWithoutMeat()
@@ -57,7 +57,7 @@ namespace ManasMenuTest.Controllers
             {
                 return NotFound();
             }
-            return await _context.Menu.Where(x => x.Type == "WITHOUTMEAT").ToListAsync();
+            return await _context.Menu.Where(x => x.Type == "WITHOUT MEAT").ToListAsync();
         }
         [HttpGet("GetDesserts")]
         public async Task<ActionResult<IEnumerable<Menu>>> GetDesserts()

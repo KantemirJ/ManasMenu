@@ -32,27 +32,20 @@ namespace ManasMenuTest.Controllers
 
             List<OneDayMenu> oneDayMenuList = await _context.OneDayMenu.ToListAsync();
             List<OneDayMenuDto> oneDayMenuDtoList = new List<OneDayMenuDto>();
-            OneDayMenuDto oneDayMenuDto = new OneDayMenuDto();
-            Menu menu = new Menu();
-            Menu menu1 = new Menu();
-            Menu menu2 = new Menu();
-            Menu menu3 = new Menu();
-            List<Menu> menuList = new List<Menu>();
 
             foreach (var oneDayMenu in oneDayMenuList)
             {
+                OneDayMenuDto oneDayMenuDto = new OneDayMenuDto();
                 oneDayMenuDto.Id = oneDayMenu.Id;
                 oneDayMenuDto.Date = oneDayMenu.Date;
-                menu = await _context.Menu.FindAsync(oneDayMenu.SoupId);
-                menuList.Add(menu);
-                menu1 = await _context.Menu.FindAsync(oneDayMenu.WithoutMeetId);
-                menuList.Add(menu1);
-                menu2 = await _context.Menu.FindAsync(oneDayMenu.WithMeetId);
-                menuList.Add(menu2);
-                menu3 = await _context.Menu.FindAsync(oneDayMenu.DessertId);
-                menuList.Add(menu3);
-
-                oneDayMenuDto.Menus = menuList;
+                var menu = await _context.Menu.FindAsync(oneDayMenu.SoupId);
+                oneDayMenuDto.Menus.Add(menu);
+                var menu1 = await _context.Menu.FindAsync(oneDayMenu.WithoutMeetId);
+                oneDayMenuDto.Menus.Add(menu1);
+                var menu2 = await _context.Menu.FindAsync(oneDayMenu.WithMeetId);
+                oneDayMenuDto.Menus.Add(menu2);
+                var menu3 = await _context.Menu.FindAsync(oneDayMenu.DessertId);
+                oneDayMenuDto.Menus.Add(menu3);
                 
                 oneDayMenuDtoList.Add(oneDayMenuDto);
             }
