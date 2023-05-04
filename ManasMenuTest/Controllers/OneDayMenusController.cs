@@ -32,8 +32,9 @@ namespace ManasMenuTest.Controllers
 
             List<OneDayMenu> oneDayMenuList = await _context.OneDayMenu.ToListAsync();
             List<OneDayMenuDto> oneDayMenuDtoList = new List<OneDayMenuDto>();
+            List<OneDayMenu> SortedListOneDayMenu = oneDayMenuList.OrderBy(o => DateTime.Parse(o.Date)).ToList();
 
-            foreach (var oneDayMenu in oneDayMenuList)
+            foreach (var oneDayMenu in SortedListOneDayMenu)
             {
                 OneDayMenuDto oneDayMenuDto = new OneDayMenuDto();
                 oneDayMenuDto.Id = oneDayMenu.Id;
